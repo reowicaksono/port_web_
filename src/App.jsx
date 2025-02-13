@@ -1,14 +1,15 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router'
+import Home from './view/HomeView.jsx'
+import PortfolioView from './view/PortfolioView.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1 class="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
   )
 }
 
