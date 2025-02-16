@@ -8,7 +8,7 @@ const PortfolioView = ({ isDarkMode }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen py-20"
+ 
     >
       <h2 className={`text-4xl font-bold  mb-6 text-center ${isDarkMode ? 'dark:text-gray-100' : 'text-purple-600'}`}>Portfolio</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

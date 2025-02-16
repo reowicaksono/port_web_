@@ -10,7 +10,7 @@ import ContactView from './ContactView.jsx';
 import SideBar from "../component/SideBar.jsx";
 
 const HomeView = () => {
-  const toRotate = ["Digital Marketing", "Seo Specialist", "Business Intelligence"];
+  const toRotate = ["Digital Marketing", "SEO Specialist", "Business Intelligence"];
   const period = 2000;
   const [text, setText] = useState("");
   const [loopNum, setLoopNum] = useState(0);
@@ -40,7 +40,6 @@ const HomeView = () => {
 
   const isDarkMode = useSelector(selectTheme);
 
-
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -50,16 +49,20 @@ const HomeView = () => {
   }, [isDarkMode]);
 
   return (
-    <div className={`page-container `}>
+    <div className="page-container">
       <div className="elastic-one"></div>
       <div className="elastic-two"></div>
 
-      <div className={`flex h-screen ${isDarkMode ? 'dark:bg-[#0b0b0d] dark:text-gray-100' : 'bg-white text-black'}`}>
-        <SideBar isDarkMode={isDarkMode} />
-        <div className="w-2/3 xl:w-3/4 ml-auto h-screen overflow-y-auto px-12 pt-8">
+      <div className={`flex flex-col md:flex-row h-screen ${isDarkMode ? 'dark:bg-[#0b0b0d] dark:text-gray-100' : 'bg-white text-black'}`}>
+        
+
+        <SideBar isDarkMode={isDarkMode} className="hidden md:flex" />
+
+
+        <div className="w-full md:w-3/4 ml-auto h-screen overflow-y-auto px-6 md:px-12 pt-8">
           <Navbar />
 
-          <section id="home" className="min-h-screen flex flex-col justify-center ml-[1rem]">
+          <section id="home" className="min-h-screen flex flex-col justify-center">
             <motion.h4
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -82,10 +85,9 @@ const HomeView = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-            <h2 className={`text-3xl md:text-4xl font-semibold ${isDarkMode ? 'dark:text-amber-400' : 'text-purple-600'} mt-3`}>
-              <span className="border-r-4 border-white pr-2">{text}</span>
-            </h2>
-
+              <h2 className={`text-3xl md:text-4xl font-semibold ${isDarkMode ? 'dark:text-amber-400' : 'text-purple-600'} mt-3`}>
+                <span className="border-r-4 border-white pr-2">{text}</span>
+              </h2>
             </motion.div>
 
             <motion.div
@@ -102,11 +104,9 @@ const HomeView = () => {
                 </a>
               </button>
             </motion.div>
-
           </section>
 
-          
-          <section id="portfolio" className="min-h-screen py-20">
+          <section id="portfolio">
             <PortfolioView isDarkMode={isDarkMode} />
           </section>
 
@@ -128,6 +128,3 @@ const HomeView = () => {
 };
 
 export default HomeView;
-
-
-

@@ -8,35 +8,34 @@ const AboutMe = ({ isDarkMode }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className={`min-h-screen py-20 flex flex-col items-center justify-center px-10 
-        `}
+      className="min-h-screen py-20 flex flex-col items-center justify-center px-6"
     >
-
       <div className="text-center w-full max-w-4xl">
-        <h2 className={`text-4xl font-bold  mb-6 text-center ${isDarkMode ? 'dark:text-gray-100' : 'text-purple-600'}`}>About Me</h2>
+        <h2 className={`text-4xl font-bold mb-6 text-center ${isDarkMode ? 'dark:text-gray-100' : 'text-purple-600'}`}>About Me</h2>
         <h3 className="text-2xl font-semibold text-gray-400">
           Turning complex problems into simple design
         </h3>
       </div>
 
-      <div className="flex justify-center gap-8 mt-8">
-        <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-center w-40">
-          <h4 className="text-2xl font-bold text-amber-400">778+</h4>
-          <p className="text-gray-400">Happy clients</p>
-        </div>
-        <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-center w-40">
-          <h4 className="text-2xl font-bold text-amber-400">4+</h4>
-          <p className="text-gray-400">Years of experience</p>
-        </div>
-        <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-center w-40">
-          <h4 className="text-2xl font-bold text-amber-400">171+</h4>
-          <p className="text-gray-400">Projects done</p>
+
+      <div className="w-full overflow-x-auto scrollbar-hide flex justify-center">
+        <div className="flex gap-8 mt-8 px-4 md:px-0">
+          <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-center w-40 min-w-[160px]">
+            <h4 className="text-2xl font-bold text-amber-400">778+</h4>
+            <p className="text-gray-400">Happy clients</p>
+          </div>
+          <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-center w-40 min-w-[160px]">
+            <h4 className="text-2xl font-bold text-amber-400">4+</h4>
+            <p className="text-gray-400">Years of experience</p>
+          </div>
+          <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-center w-40 min-w-[160px]">
+            <h4 className="text-2xl font-bold text-amber-400">171+</h4>
+            <p className="text-gray-400">Projects done</p>
+          </div>
         </div>
       </div>
 
-
       <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-16 mt-10 items-center text-center">
-
         <div className="text-lg leading-relaxed max-w-xl mx-auto">
           <p>
             I wonder if I've been changed in the night? Let me think. Was I the same when I got up this morning?
@@ -75,8 +74,6 @@ const AboutMe = ({ isDarkMode }) => {
           </div>
         </div>
       </div>
-
-   
     </motion.section>
   );
 };
