@@ -71,22 +71,33 @@
     right: 5%;
   }
   
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
+}
+
+
+@media (max-width: 768px) {
   ::-webkit-scrollbar {
-    width: 8px;
+      display: none;
   }
   
-  ::-webkit-scrollbar-track {
-    /* background: #98989b; */
-    border-radius: 10px;
+  html {
+      scrollbar-width: none; 
   }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #fbbf24; 
-    border-radius: 10px;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #d97706;
-  }
-    
+}
+
