@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const ContactView = () => {
+const ContactView = ({isDarkMode}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,7 +21,7 @@ const ContactView = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted", formData);
-    // You can add the logic to handle form submission here (e.g., sending the form data to a backend).
+
   };
 
   return (
@@ -30,21 +30,21 @@ const ContactView = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen py-20 bg-[#121212] text-white"
+      className="min-h-screen py-20  text-white"
     >
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-100">
+        <h2 className={`text-4xl font-extrabold ${isDarkMode ? 'dark:text-gray-100' : 'text-purple-600'}`}>
           Let's make something awesome together!
         </h2>
       </div>
 
-      {/* Contact Form */}
+
       <div className="max-w-4xl mx-auto">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name Field */}
+
           <div className="flex gap-4">
             <div className="flex-1">
-              <label htmlFor="name" className="text-lg text-gray-300">
+              <label htmlFor="name" className={`text-lg ${isDarkMode ? 'dark:text-gray-300' : 'text-black'}`}>
                 Your Name*
               </label>
               <input
@@ -54,14 +54,13 @@ const ContactView = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 px-4 py-2 rounded-lg bg-[#282828] text-white placeholder-gray-400 focus:outline-none"
+                className={`w-full mt-2 px-4 py-2 rounded-lg  text-white  focus:outline-none ${isDarkMode ? 'dark:text-gray-300 placeholder-gray-400 bg-[#282828]' : 'text-black placeholder-white bg-gray-400'}`}
                 placeholder="Enter your name"
               />
             </div>
 
-            {/* Company Name Field */}
             <div className="flex-1">
-              <label htmlFor="company" className="text-lg text-gray-300">
+              <label htmlFor="company" className={`text-lg ${isDarkMode ? 'dark:text-gray-300' : 'text-black'}`}>
                 Company Name
               </label>
               <input
@@ -70,15 +69,15 @@ const ContactView = () => {
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
-                className="w-full mt-2 px-4 py-2 rounded-lg bg-[#282828] text-white placeholder-gray-400 focus:outline-none"
+                className={`w-full mt-2 px-4 py-2 rounded-lg  text-white  focus:outline-none ${isDarkMode ? 'dark:text-gray-300 placeholder-gray-400 bg-[#282828]' : 'text-black placeholder-white bg-gray-400'}`}
                 placeholder="Enter company name"
               />
             </div>
           </div>
 
-          {/* Email Field */}
+
           <div>
-            <label htmlFor="email" className="text-lg text-gray-300">
+            <label htmlFor="email" className={`text-lg ${isDarkMode ? 'dark:text-gray-300' : 'text-black'}`}>
               Email Address*
             </label>
             <input
@@ -88,14 +87,14 @@ const ContactView = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full mt-2 px-4 py-2 rounded-lg bg-[#282828] text-white placeholder-gray-400 focus:outline-none"
+              className={`w-full mt-2 px-4 py-2 rounded-lg  text-white  focus:outline-none ${isDarkMode ? 'dark:text-gray-300 placeholder-gray-400 bg-[#282828]' : 'text-black placeholder-white bg-gray-400'}`}
               placeholder="Enter your email"
             />
           </div>
 
-          {/* Phone Number Field */}
+
           <div>
-            <label htmlFor="phone" className="text-lg text-gray-300">
+            <label htmlFor="phone" className={`text-lg ${isDarkMode ? 'dark:text-gray-300' : 'text-black'}`}>
               Phone Number*
             </label>
             <input
@@ -105,14 +104,13 @@ const ContactView = () => {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full mt-2 px-4 py-2 rounded-lg bg-[#282828] text-white placeholder-gray-400 focus:outline-none"
+              className={`w-full mt-2 px-4 py-2 rounded-lg  text-white  focus:outline-none ${isDarkMode ? 'dark:text-gray-300 placeholder-gray-400 bg-[#282828]' : 'text-black placeholder-white bg-gray-400'}`}
               placeholder="Enter phone number"
             />
           </div>
 
-          {/* Message Field */}
           <div>
-            <label htmlFor="message" className="text-lg text-gray-300">
+            <label htmlFor="message" className={`text-lg ${isDarkMode ? 'dark:text-gray-300' : 'text-black'}`}>
               A Few Words*
             </label>
             <textarea
@@ -122,12 +120,11 @@ const ContactView = () => {
               onChange={handleChange}
               required
               rows="5"
-              className="w-full mt-2 px-4 py-2 rounded-lg bg-[#282828] text-white placeholder-gray-400 focus:outline-none"
+              className={`w-full mt-2 px-4 py-2 rounded-lg  text-white  focus:outline-none ${isDarkMode ? 'dark:text-gray-300 placeholder-gray-400 bg-[#282828]' : 'text-black placeholder-white bg-gray-400'}`}
               placeholder="Enter your message"
             />
           </div>
 
-          {/* Submit Button */}
           <div className="text-center">
             <button
               type="submit"
