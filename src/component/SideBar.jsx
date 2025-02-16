@@ -52,7 +52,7 @@ const SideBar = ({ isDarkMode }) => {
           initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: isMobileSidebarOpen ? 1 : 0, y: isMobileSidebarOpen ? 0 : -50 }}
           transition={{ duration: 0.5 }}
-          className="md:hidden absolute top-0 left-0 w-full h-screen bg-[#111] text-white flex flex-col items-center justify-center z-50"
+          className={`md:hidden absolute top-0 left-0 w-full h-screen bg-[#111] text-white flex flex-col items-center justify-center z-50 ${isDarkMode ? 'dark:bg-[#0b0b0d] dark:text-gray-100' : 'bg-white text-black'}`}
         >
           <motion.img
             initial={{ scale: 0.9, opacity: 0 }}
@@ -62,7 +62,7 @@ const SideBar = ({ isDarkMode }) => {
             alt="Profile"
             className="w-32 h-32 rounded-full border-4 border-amber-400"
           />
-          <h2 className="mt-4 text-2xl font-bold">Rerinda Fiktianti</h2>
+          <h2 className={`mt-4 text-3xl font-bold tracking-wide ${isDarkMode ? 'dark:text-gray-100' : 'text-black'} `}>Rerinda Fiktianti</h2>
           <p className="text-gray-400 text-base">Digital Marketing</p>
           <p className="text-gray-500 text-base">Cirebon, Indonesia</p>
 
@@ -78,12 +78,12 @@ const SideBar = ({ isDarkMode }) => {
           </div>
 
  
-          <button
+          {/* <button
             className="mt-6 px-4 py-2 bg-red-500 rounded-lg text-white"
             onClick={() => setIsMobileSidebarOpen(false)}
           >
             Close
-          </button>
+          </button> */}
         </motion.div>
       )}
 
