@@ -1,37 +1,59 @@
-import React, { useState } from "react";
-import { FaSun, FaCommentDots } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaSun, FaMoon, FaCommentDots } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme, selectTheme } from '../slice/themeSlice.js';
 
-const Navbar = ({ isDarkMode, toggleTheme }) => {
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector(selectTheme);
   const [active, setActive] = useState("home");
 
   const scrollToSection = (id) => {
-    setActive(id);
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      setTimeout(() => {
-        setActive(id);
-      }, 800);
     }
   };
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
 
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-6 left-1/2 transform -translate-x-1/2 w-[85%] max-w-5xl flex items-center justify-between bg-[#121212] bg-opacity-70 backdrop-blur-md py-3 px-6 rounded-full ml-[5rem]"
+      className={`fixed top-6 left-1/2 transform -translate-x-1/2 w-[85%] max-w-5xl flex items-center justify-between bg-[#121212] bg-opacity-70 backdrop-blur-md py-3 px-6 rounded-full ml-[5rem] ${isDarkMode ? 'dark:bg-[#0b0b0d] dark:text-gray-100' : 'bg-white text-black shadow-[0_0_40px_rgba(0,0,0,0.2)]'}`}
     >
-      <ul className="flex gap-6 text-white text-xl font-medium relative cursor">
+      <ul className="flex gap-6 text-white text-xl font-medium">
         {["Home", "Portfolio", "About Me", "Resume", "Contact"].map((item) => {
           const id = item.toLowerCase().replace(" ", "-");
           return (
-            <li key={id} className="relative cursor">
+            <li key={id} className="relative">
               <button
                 onClick={() => scrollToSection(id)}
-                className={`relative px-4 py-2 transition-all duration-300 ${active === id ? "text-white" : "text-gray-400 hover:text-white hover:scale-105 cursor-pointer"}`}
+                className={`relative px-4 py-2 transition-all duration-300 ${
+                  active === id ? isDarkMode ? "text-white font-bold" :"text-black font-bold" : isDarkMode ? "text-gray-400 hover:text-white" : 
+                  "text-gray-400 hover:text-black "
+                } hover:scale-105 cursor-pointer`}
               >
                 {item}
                 {active === id && (
@@ -50,8 +72,11 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
       </ul>
 
       <div className="flex items-center gap-4">
-        <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-all">
-          <FaSun className="text-white text-lg" />
+        <button 
+          onClick={() => dispatch(toggleTheme())} 
+          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-all cursor-pointer"
+        >
+          {isDarkMode ? <FaSun className="text-yellow-400 text-lg" /> : <FaMoon className="text-white text-lg" />}
         </button>
 
         <button className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-5 py-2 rounded-full shadow-lg hover:scale-105 transition">
